@@ -1,7 +1,7 @@
 /*
   SUPERPRESSURE BALLOON PRESSURIZING RIG
 
-    Arduino Pro Mini 5V 16MHz (powered through VCC by 5V LDO regulator)
+    Arduino Pro Mini 5V 8MHz (powered through VCC by 5V LDO regulator)
     LD1117 low drop voltage regulator (Vout: 5V, Vin: 6-15V)
     2x Mitsumi R-14 A221 pump (5-7V input) + 12N65 N-Channel MOSFET (220Ω and 360kΩ resistors at gate)
     3-way valve (5-6V, 190mA) + BC547C NPN transistor (220Ω resistor at base)
@@ -115,7 +115,7 @@ uint32_t pump_adj[] = {0, 32969, 50995, 74493, 94476, 109202, 118387, 132374};
 /* 1st pressure level [Pa], rate to 1st pressure level [Pa/h], 2nd pressure level [Pa],  rate to 2nd pressure level [Pa/h], ... */
 uint16_t program1[] = {250, 5000, 1000, 100, 2000, 50};
 uint16_t program2[] = {250, 5000, 800, 100, 1500, 50};
-uint16_t program3[] = {3000, 30000, 5000, 2000, 6000, 100};
+uint16_t program3[] = {3000, 30000, 5000, 2000, 7000, 200};
 uint16_t program4[] = {500, 5000, 800, 200, 1500, 100, 2000, 50};
 
 
@@ -192,6 +192,7 @@ void loop()
         if(displayPressure_set >= PRESSURE_STEP) displayPressure_set -= PRESSURE_STEP;
         else displayPressure_set = 0;
         update_flags |= 0b0000000000000010;                           // update Active screen
+        pressure_target = (uint32_t)displayPressure_crnt * 100000;
         break;
 
       case 4:                                                         // RATE
@@ -255,6 +256,7 @@ void loop()
         if(displayPressure_set <= 9999 - PRESSURE_STEP) displayPressure_set += PRESSURE_STEP;
         else displayPressure_set = 9999;
         update_flags |= 0b0000000000000010;                           // update Active screen
+        pressure_target = (uint32_t)displayPressure_crnt * 100000;
         break;
 
       case 4:                                                         // RATE
