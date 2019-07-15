@@ -34,9 +34,9 @@ extern "C"{
 #define PUMP_PIN                      10                              // pin D10 (MOSFET's gate) - PWM pin (TIMER1), must be on PORTB
 #define VALVE_PIN                     11                              // pin D11 (transistor's base) - must be on PORTB
 
-#define HX_CALIB_0                    -1250700.0                      // zero offset at 20°C
+#define HX_CALIB_0                    -1274700.0                      // zero offset at 20°C
 #define HX_CALIB_1                    727.0                           // [raw/Pa] scaling coefficient
-#define HX_CALIB_T                    -11715.0                        // [raw/°C] temperature compensation coefficient
+#define HX_CALIB_T                    -14359.0                        // [raw/°C] temperature compensation coefficient
 #define YF_CALIB                      21.1                            // [L/Hz] air flow scaling coefficient
 #define YF_CAP                        4.4                             // [L/min] cap just above pumps' output to limit occasional spikes
 
@@ -49,7 +49,7 @@ extern "C"{
 #define DISPLAY_RATE                  13                              // 13 * 20ms = 260ms (update rate of displayed data)
 #define SENSOR_RATE                   5                               // 5 * 20ms = 100ms (sensor data acquisition rate)
 #define CONTROL_RATE                  5                               // 5 * 20ms = 100ms (program/manual pump control rate)
-#define DATA_RATE                     25                              // 25 * 20ms = 500ms (data transmission rate)
+#define DATA_RATE                     250                             // 250 * 20ms = 5s (data transmission rate)
 
 #define PRESSURE_STEP                 50                              // [Pa] for manual setting
 #define RATE_STEP                     10                              // [Pa/h] for manual setting
@@ -113,10 +113,10 @@ uint8_t pump_adj_step[] = {0, 10, 13, 18, 24, 32, 38, 51};
 uint32_t pump_adj[] = {0, 32969, 50995, 74493, 94476, 109202, 118387, 132374};
 
 /* 1st pressure level [Pa], rate to 1st pressure level [Pa/h], 2nd pressure level [Pa],  rate to 2nd pressure level [Pa/h], ... */
-uint16_t program1[] = {250, 5000, 1000, 100, 2000, 50};
-uint16_t program2[] = {250, 5000, 800, 100, 1500, 50};
+uint16_t program1[] = {500, 30000, 1000, 100, 2000, 50};
+uint16_t program2[] = {350, 30000, 800, 100, 1500, 50};
 uint16_t program3[] = {3000, 30000, 5000, 2000, 7000, 200};
-uint16_t program4[] = {500, 5000, 800, 200, 1500, 100, 2000, 50};
+uint16_t program4[] = {500, 30000, 1000, 200, 1600, 100, 2200, 50};
 
 
 // Setup function ---------------------------------------------------------------------------------
