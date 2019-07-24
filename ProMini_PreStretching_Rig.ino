@@ -34,9 +34,9 @@ extern "C"{
 #define PUMP_PIN                      10                              // pin D10 (MOSFET's gate) - PWM pin (TIMER1), must be on PORTB
 #define VALVE_PIN                     11                              // pin D11 (transistor's base) - must be on PORTB
 
-#define HX_CALIB_0                    -1274700.0                      // zero offset at 20°C
+#define HX_CALIB_0                    -1290000.0                      // zero offset at 20°C
 #define HX_CALIB_1                    727.0                           // [raw/Pa] scaling coefficient
-#define HX_CALIB_T                    -14359.0                        // [raw/°C] temperature compensation coefficient
+#define HX_CALIB_T                    -12900.0                        // [raw/°C] temperature compensation coefficient
 #define YF_CALIB                      21.1                            // [L/Hz] air flow scaling coefficient
 #define YF_CAP                        4.4                             // [L/min] cap just above pumps' output to limit occasional spikes
 
